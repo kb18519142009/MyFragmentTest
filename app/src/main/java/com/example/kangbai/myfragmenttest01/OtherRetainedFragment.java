@@ -15,6 +15,7 @@ public class OtherRetainedFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //保证Activity重建之后能通过FragmentManager对象的findFragmentByTag方法找到此Fragment对象
         setRetainInstance(true);
     }
 

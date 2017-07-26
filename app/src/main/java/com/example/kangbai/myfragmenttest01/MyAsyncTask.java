@@ -20,7 +20,7 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
     /**
      * 进度框
      */
-    private DialogFragment mLoadingDialog;
+    private LoadingFragment mLoadingDialog;
     private List<String> items;
 
     public MyAsyncTask(MainActivity activity) {
@@ -33,9 +33,10 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
      */
     @Override
     protected void onPreExecute() {
-        mLoadingDialog = new DialogFragment();
+        mLoadingDialog = new LoadingFragment();
         mLoadingDialog.show(activity.getFragmentManager(), "LOADING");
     }
+
     /**
      *  
      *  加载数据 
@@ -45,6 +46,7 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
         items = loadingData();
         return null;
     }
+
     /**
      *  
      * 加载完成回调当前的Activity 
@@ -74,6 +76,7 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
                 "Hadoop",
                 "Spark"));
     }
+
     /**
      *  
      * * 设置Activity，因为Activity会一直变化 
@@ -91,7 +94,7 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
         this.activity = activity;
         // 开启一个与当前Activity绑定的等待框  
         if (activity != null && !isCompleted) {
-            mLoadingDialog = new DialogFragment();
+            mLoadingDialog = new LoadingFragment();
             mLoadingDialog.show(activity.getFragmentManager(), "LOADING");
         }
         // 如果完成，通知Activity  
